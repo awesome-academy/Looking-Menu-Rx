@@ -2,6 +2,12 @@
 # platform :ios, '9.0'
 
 target 'LookingMenuRX' do
+
+  # Clean Architecture
+  pod 'MGArchitecture'
+  pod 'MGAPIService'
+  pod 'MGLoadMore'
+
   # Rx
   pod 'RxSwift'
   pod 'RxCocoa'
