@@ -12,7 +12,7 @@ private enum ConstantMainViewController {
 }
 
 final class MainViewController: UIViewController, Bindable {
-    @IBOutlet private var containers: [UIView]!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet private weak var tabBarCollection: UICollectionView!
     
     var viewModel: MainViewModel!
@@ -61,26 +61,94 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController {
     private var tabBarBinder: Binder<Int> {
         return Binder(self) { view, item in
-            for (index, element) in view.containers.enumerated() {
-                element.isHidden = index != item
+            switch item {
+            case 0:
+                view.goHomeView()
+            case 1:
+                view.goFavouriteView()
+            case 2:
+                view.goDietView()
+            case 3:
+                view.goIngredientView()
+            default: view.goHomeView()
             }
         }
     }
     
     private func configView() {
-        initMainView()
+        goHomeView()
         configNavigationView()
         configCollectionView()
     }
     
-    private func initMainView() {
-        for (index, element) in containers.enumerated() {
-            element.isHidden = index != 0
-        }
+    private func goHomeView() {
+        let viewController = HomeViewController.instantiate()
+        
+        viewController.willMove(toParent: self)
+        viewController.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        viewController.view.frame = containerView.bounds
+        self.containerView.addSubview(viewController.view)
+        self.addChild(viewController)
+        viewController.didMove(toParent: self)
+        
+        let usecase = HomeUseCase()
+        let navigator = HomeNavigator(
+            navigationController: viewModel.navigation)
+        let homeViewModel = HomeViewModel(navigator: navigator, useCase: usecase)
+        viewController.bindViewModel(to: homeViewModel)
     }
     
+    private func goFavouriteView() {
+        let viewController = FavouriteController.instantiate()
+        
+        viewController.willMove(toParent: self)
+        viewController.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        viewController.view.frame = containerView.bounds
+        self.containerView.addSubview(viewController.view)
+        self.addChild(viewController)
+        viewController.didMove(toParent: self)
+        
+        let useCase = FavouriteUseCase()
+        let navigator = FavouriteNavigator(
+            navigationController: viewModel.navigation)
+        let viewModel = FavouriteViewModel(usecase: useCase, navigator: navigator)
+        viewController.bindViewModel(to: viewModel)
+    }
+    
+    private func goDietView() {
+        let viewController = DietController.instantiate()
+        
+        viewController.willMove(toParent: self)
+        viewController.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        viewController.view.frame = containerView.bounds
+        self.containerView.addSubview(viewController.view)
+        self.addChild(viewController)
+        viewController.didMove(toParent: self)
+        
+        let useCase = DietUseCase()
+        let navigator = DietNavigator(
+            navigationController: viewModel.navigation)
+        let viewModel = DietViewModel(usecase: useCase, navigator: navigator)
+        viewController.bindViewModel(to: viewModel)
+    }
+    
+    private func goIngredientView() {
+        let viewController = IngredientController.instantiate()
+        
+        viewController.willMove(toParent: self)
+        viewController.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        viewController.view.frame = containerView.bounds
+        self.containerView.addSubview(viewController.view)
+        self.addChild(viewController)
+        viewController.didMove(toParent: self)
+        
+        let navigator = IngredientNavigation(
+            navigationController: viewModel.navigation)
+        let viewModel = IngredientViewModel(navigator: navigator)
+        viewController.bindViewModel(to: viewModel)
+    }
     private func configNavigationView() {
-        navigationController?.do {
+        viewModel.navigation.do {
             $0.setNavigationBarHidden(true, animated: true)
         }
     }

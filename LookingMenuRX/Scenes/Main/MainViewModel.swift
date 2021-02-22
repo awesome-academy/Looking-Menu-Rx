@@ -3,7 +3,11 @@ import RxSwift
 import RxCocoa
 import MGArchitecture
 
-struct MainViewModel: ViewModel {
+struct MainViewModel {
+    let navigation: UINavigationController
+}
+
+extension MainViewModel: ViewModel {
     
     struct Input {
         let selectTrigger: Driver<IndexPath>
