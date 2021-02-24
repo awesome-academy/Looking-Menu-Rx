@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vkG-vZ-TMA">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favourite Controller-->
+        <scene sceneID="pWW-cr-fDy">
+            <objects>
+                <viewController storyboardIdentifier="FavouriteController" id="vkG-vZ-TMA" customClass="FavouriteController" customModule="LookingMenuRX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0AE-xg-g3x">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourite Recipe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dy7-qS-Bys">
+                                <rect key="frame" x="16" y="58" width="248.5" height="38.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JTi-n1-lnM">
+                                <rect key="frame" x="16" y="112.5" width="382" height="749.5"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UYP-6e-55K">
+                                        <rect key="frame" x="0.0" y="28" width="382" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UYP-6e-55K" id="H38-Y6-v7c">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yBc-g0-3JM"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="dy7-qS-Bys" firstAttribute="top" secondItem="yBc-g0-3JM" secondAttribute="top" constant="14" id="3Vm-pK-Zsq"/>
+                            <constraint firstItem="JTi-n1-lnM" firstAttribute="top" secondItem="dy7-qS-Bys" secondAttribute="bottom" constant="16" id="GqU-X1-rbC"/>
+                            <constraint firstItem="JTi-n1-lnM" firstAttribute="leading" secondItem="yBc-g0-3JM" secondAttribute="leading" constant="16" id="HxO-Zf-m4k"/>
+                            <constraint firstItem="yBc-g0-3JM" firstAttribute="trailing" secondItem="JTi-n1-lnM" secondAttribute="trailing" constant="16" id="dqD-3Q-N2G"/>
+                            <constraint firstItem="yBc-g0-3JM" firstAttribute="bottom" secondItem="JTi-n1-lnM" secondAttribute="bottom" id="lCb-Os-WlX"/>
+                            <constraint firstItem="dy7-qS-Bys" firstAttribute="leading" secondItem="yBc-g0-3JM" secondAttribute="leading" constant="16" id="s7a-A4-lvs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dGN-ET-2ff"/>
+                    <connections>
+                        <outlet property="favouriteRecipeTableView" destination="JTi-n1-lnM" id="2jE-sC-0Mp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KrB-mm-zmh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4231.884057971015" y="-238.39285714285714"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
